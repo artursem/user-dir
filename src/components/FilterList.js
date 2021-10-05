@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./FilterList.module.css";
 
 const FilterList = (props) => {
 	const [enteredFilter, setEnteredFilter] = useState("");
@@ -21,8 +22,11 @@ const FilterList = (props) => {
 				placeholder="search"
 				onChange={changeFilterHandler}
 				value={enteredFilter}
+				className={styles.filterInput}
 			></input>
-			<button onClick={clearHandler}>x</button>
+			<button 
+			className={styles.clearBtn}
+			onClick={clearHandler}>x</button>
 		</form>
 	);
 };

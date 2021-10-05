@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import UserForm from "./components/UserForm";
 import UserList from "./components/UserList";
 import FilterList from "./components/FilterList";
+import Card from "./components/UI/Card";
+
+import "./App.css";
 
 const startingState = [
 	{ name: "Jan", age: 64, id: 1, key: 1 },
@@ -25,15 +28,24 @@ function App() {
 		setUsers((prevState) => [...prevState, newUser]);
 	};
 
-	const filterListHandler = (filteredValue) => setListFilter(filteredValue.toLowerCase());
+	const filterListHandler = (filteredValue) =>
+		setListFilter(filteredValue.toLowerCase());
 
-	const filteredUsers = users.filter((user) => user.name.toLowerCase().includes(listFilter));
+	const filteredUsers = users.filter((user) =>
+		user.name.toLowerCase().includes(listFilter)
+	);
 
 	return (
 		<div>
-			<UserForm onAddUser={addUserHandler} />
-			<FilterList onFilterList={filterListHandler} />
-			<UserList list={filteredUsers} />
+			<Card>
+				<UserForm onAddUser={addUserHandler} />
+			</Card>
+			<Card>
+				<FilterList onFilterList={filterListHandler} />
+			</Card>
+			<Card>
+				<UserList list={filteredUsers} />
+			</Card>
 		</div>
 	);
 }

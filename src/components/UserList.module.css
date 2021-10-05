@@ -1,0 +1,11 @@
+.list {
+    list-style: none;
+    font-family: inherit;
+}
+
+.list li {
+    margin: .3rem 0;
+    padding: 1rem 1rem 1rem 1rem;
+    border-radius: 5px;
+    background: #e9f1f7;
+}

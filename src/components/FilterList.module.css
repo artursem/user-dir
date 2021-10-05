@@ -1,0 +1,28 @@
+.filterInput {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 0.7rem;
+    margin-right: 1rem;
+    border: none;
+    border-radius: 6px;
+    color: #111;
+    background: #e9f1f7;
+}
+
+.clearBtn {
+    font-family: inherit;
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    padding: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background: #54426b;
+
+    cursor: pointer;
+}
+
+.clearBtn:hover {
+    background: #241d2e;
+}

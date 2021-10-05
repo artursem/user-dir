@@ -1,0 +1,53 @@
+.userInput {
+    font-family: inherit;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    margin: .3rem;
+    border: none;
+    border-radius: 6px;
+    color: #111;
+    background: #e9f1f7;
+}
+
+.label {
+    margin-bottom: 13rem;
+}
+
+.add {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-left: .3rem;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background: #623cea;
+
+    cursor: pointer;
+}
+
+.ctnBtn {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background: #623cea;
+
+    cursor: pointer;
+
+    width: 100%;
+}
+
+.add:hover, .ctnBtn:hover {
+    background: #4f30c2;
+}
+
+@media screen and (min-width: 768px) {
+    .ctnBtn {
+        width: auto;
+    }
+}

@@ -1,0 +1,15 @@
+.card {
+    border: 1px solid #333;
+    border-radius: 10px;
+    background: #fff;
+    font-family: sans-serif;
+
+    margin: 1rem;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    box-shadow: 3px 3px 3rem .1rem rgba(0,0,0,0.1);
+}
