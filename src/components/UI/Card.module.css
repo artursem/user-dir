@@ -11,5 +11,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    box-shadow: 3px 3px 3rem .1rem rgba(0,0,0,0.1);
+    box-shadow: 3px 3px 1rem rgba(0,0,0,0.3);
 }

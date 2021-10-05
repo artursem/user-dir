@@ -16,7 +16,7 @@ const FilterList = (props) => {
 	};
 
 	return (
-		<form>
+		<form className={styles.form}>
 			<input
 				type="text"
 				placeholder="search"
