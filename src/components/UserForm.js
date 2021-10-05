@@ -29,10 +29,10 @@ const UserForm = (props) => {
 		setIsOpen(true);
 	};
 
-    const closeHandler = () => setIsOpen(false);
-    
+	const closeHandler = () => setIsOpen(false);
+
 	const addUserForm = (
-		<form onSubmit={props.onAddUser}>
+		<form onSubmit={props.onAddUser} className={styles.form}>
 			<label className={styles.label}>
 				User Name:
 				<input
@@ -52,19 +52,14 @@ const UserForm = (props) => {
 					className={styles.userInput}
 				/>
 			</label>
-
-			<button 
-            type="submit" 
-            onClick={createNewUser}
-            className={styles.add}>
-				Add
-			</button>
-            <button 
-            type="submit" 
-            onClick={closeHandler}
-            className={styles.add}>
-				Cancel
-			</button>
+			<div className={styles.buttons}>
+				<button type="submit" onClick={createNewUser} className={styles.add}>
+					Add
+				</button>
+				<button type="submit" onClick={closeHandler} className={styles.add}>
+					Cancel
+				</button>
+			</div>
 		</form>
 	);
 
