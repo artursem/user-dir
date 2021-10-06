@@ -5,27 +5,48 @@ const UserForm = (props) => {
 	const [enteredName, setEnteredName] = useState("");
 	const [enteredAge, setEnteredAge] = useState(undefined);
 	const [isOpen, setIsOpen] = useState(false);
+	const [enteredNameValid, setEnteredNameValid] = useState(true);
+	const [enteredAgeValid, setEnteredAgeValid] = useState(true);
 
 	const nameChangeHandler = (event) => {
+		if (enteredName.length === 0) {
+			setEnteredNameValid(false)
+		} else {
+			setEnteredNameValid(true)
+		}
+
 		setEnteredName(event.target.value);
 	};
 
 	const ageChangeHandler = (event) => {
+		if (enteredAge <= 0) {
+			setEnteredAgeValid(false)
+		} else {
+			setEnteredAgeValid(true)
+		}
 		setEnteredAge(event.target.value);
 	};
 
 	const createNewUser = (event) => {
 		event.preventDefault();
 
+		if (enteredNameValid && enteredAgeValid) {
+			props.onAddUser({
+				name: enteredName,
+				age: enteredAge,
+			});
+
+			setEnteredName("");
+			setEnteredAge("");
+			setIsOpen(false);
+			return;
+		}
+
 		
 
-		props.onAddUser({
-			name: enteredName,
-			age: enteredAge,
-		});
-		setEnteredName("");
-		setEnteredAge("");
-		setIsOpen(false);
+		if (enteredAge < 0) {
+			setEnteredAgeValid(false)
+		}
 	};
 
 	const ctaHandler = () => {
@@ -42,30 +63,28 @@ const UserForm = (props) => {
 					type="text"
 					onChange={nameChangeHandler}
 					value={enteredName}
-					className={styles.userInput}
-				/>
+					className={`${styles.userInput} ${!enteredNameValid && styles.error}`}
+					/>
 			</label>
 			<br />
 			<label className={styles.label}>
 				User Age:
-				<input	
+				<input
 					type="number"
 					onChange={ageChangeHandler}
 					value={enteredAge}
-					className={styles.userInput}
+					className={`${styles.userInput} ${!enteredAgeValid && styles.error}`}
 				/>
 			</label>
 			<div className={styles.buttons}>
-				<button 
-				type="submit" 
-				onClick={createNewUser} 
-				className={styles.addBtn}>
+				<button type="submit" onClick={createNewUser} className={styles.addBtn}>
 					Add
 				</button>
-				<button 
-				type="submit" 
-				onClick={closeHandler} 
-				className={styles.cancelBtn}>
+				<button
+					type="submit"
+					onClick={closeHandler}
+					className={styles.cancelBtn}
+				>
 					Cancel
 				</button>
 			</div>
