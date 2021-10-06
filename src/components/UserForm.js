@@ -9,7 +9,7 @@ const UserForm = (props) => {
 	const [enteredAgeValid, setEnteredAgeValid] = useState(true);
 
 	const nameChangeHandler = (event) => {
-		if (enteredName.length === 0) {
+		if (event.target.value.length === 0) {
 			setEnteredNameValid(false)
 		} else {
 			setEnteredNameValid(true)
@@ -19,7 +19,7 @@ const UserForm = (props) => {
 	};
 
 	const ageChangeHandler = (event) => {
-		if (enteredAge <= 0) {
+		if (event.target.value <= 0) {
 			setEnteredAgeValid(false)
 		} else {
 			setEnteredAgeValid(true)
@@ -30,7 +30,7 @@ const UserForm = (props) => {
 	const createNewUser = (event) => {
 		event.preventDefault();
 
-		if (enteredNameValid && enteredAgeValid) {
+		if (enteredName.length>0 && enteredAge>0) {
 			props.onAddUser({
 				name: enteredName,
 				age: enteredAge,
@@ -41,12 +41,14 @@ const UserForm = (props) => {
 			setIsOpen(false);
 			return;
 		}
-
-		
-
-		if (enteredAge < 0) {
+		if (enteredName.length === 0) {
+			setEnteredNameValid(false)
+		}
+		if (!enteredAge>0) {
 			setEnteredAgeValid(false)
 		}
+
+
 	};
 
 	const ctaHandler = () => {
