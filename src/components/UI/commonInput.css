@@ -17,5 +17,9 @@
 
 .error {
     background: salmon;
-    border: #800000;
+    border-color: #a81111;
+}
+
+.error:focus {
+    border-color: #a81111;
 }
