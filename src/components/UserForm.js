@@ -16,6 +16,9 @@ const UserForm = (props) => {
 
 	const createNewUser = (event) => {
 		event.preventDefault();
+
+		
+
 		props.onAddUser({
 			name: enteredName,
 			age: enteredAge,
@@ -45,7 +48,7 @@ const UserForm = (props) => {
 			<br />
 			<label className={styles.label}>
 				User Age:
-				<input
+				<input	
 					type="number"
 					onChange={ageChangeHandler}
 					value={enteredAge}
@@ -53,10 +56,16 @@ const UserForm = (props) => {
 				/>
 			</label>
 			<div className={styles.buttons}>
-				<button type="submit" onClick={createNewUser} className={styles.add}>
+				<button 
+				type="submit" 
+				onClick={createNewUser} 
+				className={styles.addBtn}>
 					Add
 				</button>
-				<button type="submit" onClick={closeHandler} className={styles.add}>
+				<button 
+				type="submit" 
+				onClick={closeHandler} 
+				className={styles.cancelBtn}>
 					Cancel
 				</button>
 			</div>
@@ -64,8 +73,8 @@ const UserForm = (props) => {
 	);
 
 	const ctaBtn = (
-		<button onClick={ctaHandler} className={styles.ctnBtn}>
-			New User
+		<button onClick={ctaHandler} className={styles.ctaBtn}>
+			Add New User
 		</button>
 	);
 

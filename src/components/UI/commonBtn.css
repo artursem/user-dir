@@ -1,0 +1,42 @@
+.btn {
+    font-family: inherit;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.primary {
+	background: #623cea;
+	color: white;
+	border: solid 1px #623cea;
+}
+
+.primary:hover {
+	background: #3b2394;
+    color: #e9f1f7;
+}
+
+.secondary {
+	background: #e9f1f7;
+	color: #623cea;
+	border: solid 1px #623cea;
+}
+
+.secondary:hover {
+	background: #623cea;
+	color: #e9f1f7;
+	border: solid 1px #623cea;
+}
+
+.clear {
+    background: #54426b;
+    color: white;
+    height: 41px;
+}
+
+.clear:hover {
+    background: #241d2e;
+}

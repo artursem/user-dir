@@ -1,0 +1,21 @@
+.input {
+    font-family: inherit;
+    font-size: 1.2rem;
+    padding: 0.6rem;
+    margin: .3rem 0;
+    border: 1px solid #e9f1f7;
+    border-radius: 6px;
+    color: #111;
+    background: #e9f1f7;
+    width: 100%;
+}
+
+.input:focus {
+    border: 1px solid #623cea;
+    outline: none;
+}
+
+.error {
+    background: salmon;
+    border: #800000;
+}

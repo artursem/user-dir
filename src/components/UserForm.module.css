@@ -5,15 +5,11 @@
 
 
 .userInput {
-    font-family: inherit;
-    font-size: 1.2rem;
-    padding: 0.5rem;
-    margin: .3rem 0;
-    border: none;
-    border-radius: 6px;
-    color: #111;
-    background: #e9f1f7;
-    width: 100%;
+    composes: input from "./UI/commonInput.css";
+}
+
+.error {
+    composes: error from "./UI/commonInput.css";
 }
 
 .buttons {
@@ -22,41 +18,22 @@
     flex-direction: row;
 }
 
-.add {
-    font-family: inherit;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-left: .3rem;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    background: #623cea;
-    width: 100%;
-    cursor: pointer;
-}
-
-.ctnBtn {
-    font-family: inherit;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    background: #623cea;
-
-    cursor: pointer;
-
+.ctaBtn {
+    composes: btn from "./UI/commonBtn.css";
+    composes: primary from "./UI/commonBtn.css";
     width: 100%;
 }
 
-.add:hover, .ctnBtn:hover {
-    background: #3b2394;
+.addBtn {
+    composes: btn from "./UI/commonBtn.css";
+    composes: primary from "./UI/commonBtn.css";
+    width: 100%;
+    margin-right: 10px;
 }
 
-@media screen and (min-width: 768px) {
-    .ctnBtn {
-        width: auto;
-    }
+.cancelBtn {
+    composes: btn from "./UI/commonBtn.css";
+    composes: secondary from "./UI/commonBtn.css";
+    width: 100%;
+    margin-left: 10px;
 }
