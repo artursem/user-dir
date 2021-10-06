@@ -44,6 +44,7 @@ function App() {
 				<FilterList onFilterList={filterListHandler} />
 			</Card>
 			<Card>
+				{!filteredUsers.length>0 ? <p>No users found</p> : ''}
 				<UserList list={filteredUsers} />
 			</Card>
 		</div>
