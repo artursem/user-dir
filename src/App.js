@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import UserForm from "./components/UserForm";
 import UserList from "./components/UserList";
 import FilterList from "./components/FilterList";
@@ -12,31 +12,42 @@ const startingState = [
 	{ name: "Ron", age: 43, id: 3, key: 3 },
 ];
 
+export const LIST = {
+	ADD: "list-add",
+	DELETE: "list-delete",
+};
+
+const listReducer = (state, action) => {
+	switch (action.type) {
+		case LIST.ADD:
+			return [...state, action.payload];
+		case LIST.DELETE:
+			return state.filter((user) => user.id !== action.payload);
+		default:
+			return startingState;
+	}
+};
+
 function App() {
-	const [users, setUsers] = useState(startingState);
 	const [listFilter, setListFilter] = useState("");
+	const [listState, listDispatch] = useReducer(listReducer, startingState);
 
 	const addUserHandler = (newUserData) => {
-		// const newId = Math.floor(Math.random() * 1000);
 		const newId = Date.now();
-		// does id already exist?!
 		const newUser = {
 			name: newUserData.name,
 			age: newUserData.age,
 			id: newId,
-			key: newId
+			key: newId,
 		};
-		setUsers((prevState) => [...prevState, newUser]);
+		// console.log(newUser);
+		listDispatch({ type: LIST.ADD, payload: newUser });
 	};
-
-	const deleteUserHandler = (event) => {
-		console.log(event.target.value);
-	}
 
 	const filterListHandler = (filteredValue) =>
 		setListFilter(filteredValue.toLowerCase());
 
-	const filteredUsers = users.filter((user) =>
+	const filteredUsers = listState.filter((user) =>
 		user.name.toLowerCase().includes(listFilter)
 	);
 
@@ -49,8 +60,8 @@ function App() {
 				<FilterList onFilterList={filterListHandler} />
 			</Card>
 			<Card>
-				{!filteredUsers.length>0 && <p>No users found</p>}
-				<UserList list={filteredUsers} onDelete={deleteUserHandler}/>
+				{!filteredUsers.length > 0 && <p>No users found</p>}
+				<UserList list={filteredUsers} listDispatch={listDispatch} />
 			</Card>
 		</div>
 	);

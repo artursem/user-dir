@@ -1,4 +1,5 @@
 import React from "react";
+import { LIST } from "../App";
 import Button from "./UI/Button";
 import styles from "./UserItem.module.css";
 
@@ -13,7 +14,15 @@ const UserItem = (props) => {
 				<Button className={styles.mini} disabled={true}>
 					<i class="fas fa-user-edit"></i>
 				</Button>
-				<Button className={styles.mini} onClick={props.onDelete}>
+				<Button
+					className={styles.mini}
+					onClick={() => {
+						props.dispatch({
+							type: LIST.DELETE,
+							payload: key,
+						});
+					}}
+				>
 					<i class="far fa-trash-alt"></i>
 				</Button>
 			</div>
