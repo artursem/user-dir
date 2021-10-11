@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./UserForm.module.css";
+import Button from "./UI/Button";
 
 const UserForm = (props) => {
 	const [enteredName, setEnteredName] = useState("");
@@ -79,24 +80,24 @@ const UserForm = (props) => {
 				/>
 			</label>
 			<div className={styles.buttons}>
-				<button type="submit" onClick={createNewUser} className={styles.addBtn}>
+				<Button type="submit" onClick={createNewUser} className={styles.addBtn}>
 					Add
-				</button>
-				<button
+				</Button>
+				<Button
 					type="submit"
 					onClick={closeHandler}
 					className={styles.cancelBtn}
 				>
 					Cancel
-				</button>
+				</Button>
 			</div>
 		</form>
 	);
 
 	const ctaBtn = (
-		<button onClick={ctaHandler} className={styles.ctaBtn}>
+		<Button onClick={ctaHandler} className={styles.ctaBtn}>
 			Add New User
-		</button>
+		</Button>
 	);
 
 	return <div>{isOpen ? addUserForm : ctaBtn}</div>;

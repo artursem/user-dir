@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "./UI/Button";
 import styles from "./FilterList.module.css";
 
 const FilterList = (props) => {
@@ -24,9 +25,9 @@ const FilterList = (props) => {
 				value={enteredFilter}
 				className={styles.filterInput}
 			></input>
-			<button 
+			<Button 
 			className={styles.clearBtn}
-			onClick={clearHandler}>x</button>
+			onClick={clearHandler}>x</Button>
 		</form>
 	);
 };

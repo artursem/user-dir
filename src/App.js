@@ -17,7 +17,8 @@ function App() {
 	const [listFilter, setListFilter] = useState("");
 
 	const addUserHandler = (newUserData) => {
-		const newId = Math.floor(Math.random() * 1000);
+		// const newId = Math.floor(Math.random() * 1000);
+		const newId = Date.now();
 		// does id already exist?!
 		const newUser = {
 			name: newUserData.name,
