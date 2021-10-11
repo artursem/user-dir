@@ -3,9 +3,9 @@ import Button from "./UI/Button";
 import styles from "./UserItem.module.css";
 
 const UserItem = (props) => {
-	const { name, age } = props.userData;
+	const { name, age, key } = props.userData;
 	return (
-		<li className={styles.li}>
+		<li className={styles.li} key={key}>
 			<div>
 				username: <b>{name}</b>, age: <b>{age}</b>
 			</div>

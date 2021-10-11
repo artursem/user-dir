@@ -24,7 +24,7 @@ function App() {
 			name: newUserData.name,
 			age: newUserData.age,
 			id: newId,
-			key: newId,
+			key: newId
 		};
 		setUsers((prevState) => [...prevState, newUser]);
 	};

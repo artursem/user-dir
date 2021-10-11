@@ -1,55 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import styles from "./UserForm.module.css";
 import Button from "./UI/Button";
 
+const ACTIONS = {
+	ADD_USER: "add-user",
+	VALIDATE_USER: "validate-user",
+	ADD_AGE: "add-age",
+	VALIDATE_AGE: "validate-age",
+	ZERO_USER: "zero-user",
+	ZERO_AGE: "zero-age",
+};
+
+const usersReducer = (state, action) => {
+	switch (action.type) {
+		case ACTIONS.ADD_USER:
+			return { value: action.payload, isValid: action.payload.length > 2 };
+		case ACTIONS.VALIDATE_USER:
+			return { value: state.value, isValid: state.value.length > 2 };
+		case ACTIONS.ZERO_USER:
+			return { value: "", isValid: null };
+		default:
+			return { value: "", isValid: false };
+	}
+};
+
+const ageReducer = (state, action) => {
+	switch (action.type) {
+		case ACTIONS.ADD_AGE:
+			return { value: action.payload, isValid: action.payload > 0 };
+		case ACTIONS.VALIDATE_AGE:
+			return { value: action.payload, isValid: action.payload > 0 };
+		case ACTIONS.ZERO_AGE:
+			return { value: "", isValid: null };
+		default:
+			return { value: "", isValid: false };
+	}
+};
+
 const UserForm = (props) => {
-	const [enteredName, setEnteredName] = useState("");
-	const [enteredAge, setEnteredAge] = useState(undefined);
 	const [isOpen, setIsOpen] = useState(false);
-	const [enteredNameValid, setEnteredNameValid] = useState(true);
-	const [enteredAgeValid, setEnteredAgeValid] = useState(true);
+
+	const [usersState, usersDispatch] = useReducer(usersReducer, {
+		value: "",
+		isValid: null,
+	});
+
+	const [ageState, ageDispatch] = useReducer(ageReducer, {
+		value: "",
+		isValid: null,
+	});
 
 	const nameChangeHandler = (event) => {
-		if (event.target.value.length === 0) {
-			setEnteredNameValid(false)
-		} else {
-			setEnteredNameValid(true)
-		}
-
-		setEnteredName(event.target.value);
+		usersDispatch({ type: ACTIONS.ADD_USER, payload: event.target.value });
 	};
 
 	const ageChangeHandler = (event) => {
-		if (event.target.value <= 0) {
-			setEnteredAgeValid(false)
-		} else {
-			setEnteredAgeValid(true)
-		}
-		setEnteredAge(event.target.value);
+		ageDispatch({ type: ACTIONS.ADD_AGE, payload: event.target.value });
+	};
+
+	const validateUser = () => {
+		usersDispatch({ type: ACTIONS.VALIDATE_USER });
+	};
+
+	const validateAge = () => {
+		usersDispatch({ type: ACTIONS.VALIDATE_AGE });
 	};
 
 	const createNewUser = (event) => {
 		event.preventDefault();
 
-		if (enteredName.length>0 && enteredAge>0) {
+		if (usersState.isValid && ageState.isValid) {
 			props.onAddUser({
-				name: enteredName,
-				age: enteredAge,
+				name: usersState.value,
+				age: ageState.value,
 			});
-
-			setEnteredName("");
-			setEnteredAge("");
-			setIsOpen(false);
-			return;
-		}
-		if (enteredName.length === 0) {
-			setEnteredNameValid(false)
-		}
-		if (!enteredAge>0) {
-			setEnteredAgeValid(false)
 		}
 
-
+		usersDispatch({ type: ACTIONS.ZERO_USER });
+		ageDispatch({ type: ACTIONS.ZERO_AGE });
+		setIsOpen(false);
 	};
 
 	const ctaHandler = () => {
@@ -65,9 +94,12 @@ const UserForm = (props) => {
 				<input
 					type="text"
 					onChange={nameChangeHandler}
-					value={enteredName}
-					className={`${styles.userInput} ${!enteredNameValid && styles.error}`}
-					/>
+					value={usersState.value}
+					className={`${styles.userInput} ${
+						usersState.isValid === false && styles.error
+					}`}
+					onBlur={validateUser}
+				/>
 			</label>
 			<br />
 			<label className={styles.label}>
@@ -75,8 +107,11 @@ const UserForm = (props) => {
 				<input
 					type="number"
 					onChange={ageChangeHandler}
-					value={enteredAge}
-					className={`${styles.userInput} ${!enteredAgeValid && styles.error}`}
+					value={ageState.value}
+					className={`${styles.userInput} ${
+						ageState.isValid === false && styles.error
+					}`}
+					onBlur={validateAge}
 				/>
 			</label>
 			<div className={styles.buttons}>
