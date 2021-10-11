@@ -29,6 +29,10 @@ function App() {
 		setUsers((prevState) => [...prevState, newUser]);
 	};
 
+	const deleteUserHandler = (event) => {
+		console.log(event.target.value);
+	}
+
 	const filterListHandler = (filteredValue) =>
 		setListFilter(filteredValue.toLowerCase());
 
@@ -46,7 +50,7 @@ function App() {
 			</Card>
 			<Card>
 				{!filteredUsers.length>0 && <p>No users found</p>}
-				<UserList list={filteredUsers} />
+				<UserList list={filteredUsers} onDelete={deleteUserHandler}/>
 			</Card>
 		</div>
 	);

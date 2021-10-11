@@ -13,7 +13,7 @@ const UserItem = (props) => {
 				<Button className={styles.mini} disabled={true}>
 					<i class="fas fa-user-edit"></i>
 				</Button>
-				<Button className={styles.mini}>
+				<Button className={styles.mini} onClick={props.onDelete}>
 					<i class="far fa-trash-alt"></i>
 				</Button>
 			</div>

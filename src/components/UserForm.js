@@ -29,7 +29,7 @@ const ageReducer = (state, action) => {
 		case ACTIONS.ADD_AGE:
 			return { value: action.payload, isValid: action.payload > 0 };
 		case ACTIONS.VALIDATE_AGE:
-			return { value: action.payload, isValid: action.payload > 0 };
+			return { value: state.value, isValid: state.value > 0 };
 		case ACTIONS.ZERO_AGE:
 			return { value: "", isValid: null };
 		default:
