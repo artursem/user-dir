@@ -1,0 +1,5 @@
+.ctaBtn {
+    composes: btn from "./UI/commonBtn.css";
+    composes: primary from "./UI/commonBtn.css";
+    width: 100%;
+}
