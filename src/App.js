@@ -1,5 +1,5 @@
 import React, { useState, useReducer } from "react";
-import UserForm from "./components/UserForm";
+import Header from "./components/Header";
 import UserList from "./components/UserList";
 import FilterList from "./components/FilterList";
 import Card from "./components/UI/Card";
@@ -40,25 +40,27 @@ function App() {
 			id: newId,
 			key: newId,
 		};
-		// console.log(newUser);
+		console.log(newUser);
 		listDispatch({ type: LIST.ADD, payload: newUser });
 	};
 
-	const filterListHandler = (filteredValue) =>
-		setListFilter(filteredValue.toLowerCase());
+	const filteredUsers = listState;
 
-	const filteredUsers = listState.filter((user) =>
-		user.name.toLowerCase().includes(listFilter)
-	);
+	// const filterListHandler = (filteredValue) =>
+	// 	setListFilter(filteredValue.toLowerCase());
+
+	// const filteredUsers = listState.filter((user) =>
+	// 	user.name.toLowerCase().includes(listFilter)
+	// );
 
 	return (
 		<div>
 			<Card>
-				<UserForm onAddUser={addUserHandler} />
+				<Header onAddUser={addUserHandler} />
 			</Card>
-			<Card>
+			{/* <Card>
 				<FilterList onFilterList={filterListHandler} />
-			</Card>
+			</Card> */}
 			<Card>
 				{!filteredUsers.length > 0 && <p>No users found</p>}
 				<UserList list={filteredUsers} listDispatch={listDispatch} />

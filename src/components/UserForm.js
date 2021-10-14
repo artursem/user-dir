@@ -16,11 +16,11 @@ const usersReducer = (state, action) => {
 		case ACTIONS.ADD_USER:
 			return { value: action.payload, isValid: action.payload.length > 2 };
 		case ACTIONS.VALIDATE_USER:
-			return { value: state.value, isValid: state.value.length > 2 };
+			return { value: action.payload, isValid: state.value.length > 2 };
 		case ACTIONS.ZERO_USER:
 			return { value: "", isValid: null };
 		default:
-			return { value: "", isValid: false };
+			return { value: "", isValid: null };
 	}
 };
 
@@ -33,13 +33,11 @@ const ageReducer = (state, action) => {
 		case ACTIONS.ZERO_AGE:
 			return { value: "", isValid: null };
 		default:
-			return { value: "", isValid: false };
+			return { value: "", isValid: null };
 	}
 };
 
 const UserForm = (props) => {
-	const [isOpen, setIsOpen] = useState(false);
-
 	const [usersState, usersDispatch] = useReducer(usersReducer, {
 		value: "",
 		isValid: null,
@@ -58,8 +56,8 @@ const UserForm = (props) => {
 		ageDispatch({ type: ACTIONS.ADD_AGE, payload: event.target.value });
 	};
 
-	const validateUser = () => {
-		usersDispatch({ type: ACTIONS.VALIDATE_USER });
+	const validateUser = (event) => {
+		usersDispatch({ type: ACTIONS.VALIDATE_USER, payload: event.target.value });
 	};
 
 	const validateAge = () => {
@@ -78,17 +76,11 @@ const UserForm = (props) => {
 
 		usersDispatch({ type: ACTIONS.ZERO_USER });
 		ageDispatch({ type: ACTIONS.ZERO_AGE });
-		setIsOpen(false);
+		props.onCancel();
 	};
-
-	const ctaHandler = () => {
-		setIsOpen(true);
-	};
-
-	const closeHandler = () => setIsOpen(false);
 
 	const addUserForm = (
-		<form onSubmit={props.onAddUser} className={styles.form}>
+		<form onSubmit={createNewUser} className={styles.form}>
 			<label className={styles.label}>
 				User Name:
 				<input
@@ -115,12 +107,12 @@ const UserForm = (props) => {
 				/>
 			</label>
 			<div className={styles.buttons}>
-				<Button type="submit" onClick={createNewUser} className={styles.addBtn}>
+				<Button type="submit" className={styles.addBtn}>
 					Add
 				</Button>
 				<Button
-					type="submit"
-					onClick={closeHandler}
+					type="button"
+					onClick={props.onCancel}
 					className={styles.cancelBtn}
 				>
 					Cancel
@@ -128,14 +120,7 @@ const UserForm = (props) => {
 			</div>
 		</form>
 	);
-
-	const ctaBtn = (
-		<Button onClick={ctaHandler} className={styles.ctaBtn}>
-			Add New User
-		</Button>
-	);
-
-	return <div>{isOpen ? addUserForm : ctaBtn}</div>;
+	return <div>{addUserForm}</div>;
 };
 
 export default UserForm;

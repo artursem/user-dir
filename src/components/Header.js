@@ -1,17 +1,21 @@
 import React, { useState, useContext } from "react";
 import UserForm from "./UserForm";
-import ModalContext from '../store/modal-context'
 import Button from "./UI/Button";
 import styles from "./Header.module.css";
 
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
-    const ctx = useContext(ModalContext);
+
+    const openFormHandler = () => {
+		setIsOpen(true);
+	}
+
+    const closeFormHandler = () => {
+		setIsOpen(false);
+	}
 
 	const ctaBtn = (
-		<Button onClick={()=>{
-            setIsOpen(true)
-        }} className={styles.ctaBtn}>
+		<Button onClick={openFormHandler} className={styles.ctaBtn}>
 			Add New User
 		</Button>
 	);
@@ -19,9 +23,7 @@ const Header = (props) => {
     const userForm = (
         <UserForm 
         onAddUser={props.onAddUser}
-        onCancel={()=> {
-            setIsOpen(false)
-        }}/>
+        onCancel={closeFormHandler}/>
     )
 
 	return (
